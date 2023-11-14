@@ -2,7 +2,7 @@
 #あくまでも学習用としてお使いください
 
 
-import socket,time,subprocess,timeout_decorator
+import socket,time,subprocess
 IP = 'input server ip addr'
 
 #コマンド実行処理
